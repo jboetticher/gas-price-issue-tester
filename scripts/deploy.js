@@ -9,10 +9,12 @@ async function main() {
   console.log("Starting Lock deployment...");
 
   for(let i = 0; i < 10; i++) {
-    const Lock = await ethers.getContractFactory("Lock");
+    // const Lock = await ethers.getContractFactory("Lock");
+    const EmptyContract = await ethers.getContractFactory("EmptyContract");
 
     const [deployer] = await ethers.getSigners();
-    const lock = await Lock.deploy(1780124779, { gasPrice: await deployer.getGasPrice() });
+    // const lock = await Lock.deploy(1780124779, { gasPrice: await deployer.getGasPrice() });
+    const lock = await EmptyContract.deploy({ gasPrice: await deployer.getGasPrice() });
     console.log("Sent transaction", { hash: lock.deployTransaction.hash, gasPrice: lock.deployTransaction.gasPrice, nonce: lock.deployTransaction.nonce});
   
     await lock.deployed();
